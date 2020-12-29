@@ -110,7 +110,7 @@ fn make_opts() -> Options {
     let emit_opts = if is_nightly {
         "[files|stdout|coverage|checkstyle|json]"
     } else {
-        "[files|stdout]"
+        "[files|stdout|checkstyle|json]"
     };
     opts.optopt("", "emit", "What data to emit and how", emit_opts);
     opts.optflag("", "backup", "Backup any modified files.");
@@ -493,7 +493,7 @@ fn determine_operation(matches: &Matches) -> Result<Operation, OperationError> {
     })
 }
 
-const STABLE_EMIT_MODES: [EmitMode; 3] = [EmitMode::Files, EmitMode::Stdout, EmitMode::Diff];
+const STABLE_EMIT_MODES: [EmitMode; 5] = [EmitMode::Files, EmitMode::Stdout, EmitMode::Diff, EmitMode::Checkstyle, EmitMode::Json];
 
 /// Parsed command line options.
 #[derive(Clone, Debug, Default)]
